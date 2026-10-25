@@ -1,0 +1,49 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 target   R-squared:                       0.552
+Model:                            OLS   Adj. R-squared:                  0.552
+Method:                 Least Squares   F-statistic:                     5573.
+Date:                Sat, 24 Oct 2026   Prob (F-statistic):               0.00
+Time:                        22:23:00   Log-Likelihood:                -32726.
+No. Observations:              103904   AIC:                         6.550e+04
+Df Residuals:                  103880   BIC:                         6.573e+04
+Df Model:                          23                                         
+Covariance Type:            nonrobust                                         
+=====================================================================================================
+                                        coef    std err          t      P>|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------------
+const                                -0.1891      0.008    -24.797      0.000      -0.204      -0.174
+Age                                  -0.0009   7.33e-05    -12.956      0.000      -0.001      -0.001
+Flight Distance                    1.153e-06   1.21e-06      0.957      0.339   -1.21e-06    3.52e-06
+Inflight wifi service                 0.0673      0.001     55.342      0.000       0.065       0.070
+Departure/Arrival time convenient    -0.0162      0.001    -18.538      0.000      -0.018      -0.014
+Ease of Online booking               -0.0404      0.001    -33.355      0.000      -0.043      -0.038
+Gate location                         0.0040      0.001      4.098      0.000       0.002       0.006
+Food and drink                       -0.0046      0.001     -4.036      0.000      -0.007      -0.002
+Online boarding                       0.0795      0.001     73.681      0.000       0.077       0.082
+Seat comfort                          0.0080      0.001      6.646      0.000       0.006       0.010
+Inflight entertainment                0.0163      0.002     10.717      0.000       0.013       0.019
+On-board service                      0.0347      0.001     32.667      0.000       0.033       0.037
+Leg room service                      0.0330      0.001     36.797      0.000       0.031       0.035
+Baggage handling                      0.0166      0.001     13.783      0.000       0.014       0.019
+Checkin service                       0.0369      0.001     40.977      0.000       0.035       0.039
+Inflight service                      0.0142      0.001     11.235      0.000       0.012       0.017
+Cleanliness                           0.0250      0.001     18.834      0.000       0.022       0.028
+Departure Delay in Minutes            0.0005      0.000      5.155      0.000       0.000       0.001
+Arrival Delay in Minutes             -0.0010      0.000    -10.004      0.000      -0.001      -0.001
+Gender_Male                           0.0071      0.002      3.432      0.001       0.003       0.011
+Customer Type_disloyal Customer      -0.3084      0.003    -92.221      0.000      -0.315      -0.302
+Type of Travel_Personal Travel       -0.3805      0.003   -118.397      0.000      -0.387      -0.374
+Class_Eco                            -0.1279      0.003    -42.262      0.000      -0.134      -0.122
+Class_Eco Plus                       -0.1427      0.005    -31.441      0.000      -0.152      -0.134
+==============================================================================
+Omnibus:                     6128.369   Durbin-Watson:                   2.000
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):             9428.947
+Skew:                           0.501   Prob(JB):                         0.00
+Kurtosis:                       4.084   Cond. No.                     1.20e+04
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 1.2e+04. This might indicate that there are
+strong multicollinearity or other numerical problems.
