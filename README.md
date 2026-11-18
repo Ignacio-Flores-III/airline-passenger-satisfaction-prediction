@@ -29,7 +29,7 @@ airline-passenger-satisfaction-prediction/
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/Ignacio-Flores-III/airline-passenger-satisfaction-prediction.git](https://github.com/Ignacio-Flores-III/airline-passenger-satisfaction-prediction.git) && cd airline-passenger-satisfaction-prediction
+   git clone https://github.com/Ignacio-Flores-III/airline-passenger-satisfaction-prediction.git && cd airline-passenger-satisfaction-prediction
    ```
 2. Set up the virtual environment and install dependencies:
    ```bash
