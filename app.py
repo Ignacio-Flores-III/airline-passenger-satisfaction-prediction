@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="Airline Churn & Capex Simulator", layout="wide")
+st.set_page_config(page_title="Airline Satisfaction & Capex Simulator", layout="wide")
 
 @st.cache_resource
 def load_model():
@@ -11,13 +11,14 @@ def load_model():
 
 model = load_model()
 
-st.title("Commercial Aviation Churn & Fleet Capex Simulator")
+st.title("Commercial Aviation Satisfaction & Fleet Capex Simulator")
 st.markdown("**Decision Support System:** Evaluating Digital Infrastructure ($6M–$8M) vs. Physical Cabin Seating ($25M–$50M)")
+st.caption("Methodology Note: Dissatisfaction probabilities are directly predicted by `artifacts/model.joblib` (N = 124,685 cross-sectional surveys). Financial ROI outputs in Tab 2 reflect user-calibrated scenario assumptions pending 6-month hub-route A/B pilot validation.")
 
-tab1, tab2 = st.tabs(["1. Passenger Friction Simulator", "2. Capex & Recovery ROI Optimizer"])
+tab1, tab2 = st.tabs(["1. Passenger Friction Simulator", "2. Capex & Scenario ROI Optimizer"])
 
 with tab1:
-    st.subheader("Real-Time Churn Risk Scoring (`artifacts/model.joblib`)")
+    st.subheader("Real-Time Dissatisfaction Risk Scoring (`artifacts/model.joblib`)")
     col1, col2, col3 = st.columns(3)
 
     with col1:
@@ -73,18 +74,18 @@ with tab1:
 
     st.divider()
     m1, m2, m3 = st.columns(3)
-    m1.metric("Predicted Defection Risk", f"{churn_prob:.1%}", delta="High Risk" if churn_prob >= 0.18 else "Low Risk", delta_color="inverse")
-    m2.metric("Annual Repeat Revenue at Stake", "$1,800" if customer_type == "Loyal Customer" else "$450")
+    m1.metric("Predicted Dissatisfaction Risk", f"{churn_prob:.1%}", delta="High Risk" if churn_prob >= 0.18 else "Low Risk", delta_color="inverse")
+    m2.metric("Illustrative Annual Flyer Value", "$1,800" if customer_type == "Loyal Customer" else "$450")
     m3.metric("Recommended Action", "Trigger Bonus Miles / Lounge Pass" if churn_prob >= 0.18 else "No Intervention Needed")
 
 with tab2:
-    st.subheader("Fleet Capex & Monte Carlo Sensitivity Simulator")
+    st.subheader("Fleet Capex & Monte Carlo Scenario Simulator (Modeled Assumptions)")
     c1, c2 = st.columns([1, 2])
     with c1:
         capex_m = st.slider("Digital Wi-Fi & Boarding Capex ($M)", 5.0, 12.0, 7.0, 0.5)
-        avg_fare = st.slider("Average Round-Trip Fare ($)", 300, 650, 450, 25)
-        trips_yr = st.slider("Repeat Trips / Year", 2, 8, 4)
-        save_rate = st.slider("Recovery Campaign Save Rate (%)", 20, 80, 55, 5) / 100.0
+        avg_fare = st.slider("Assumed Round-Trip Fare ($)", 300, 650, 450, 25)
+        trips_yr = st.slider("Assumed Repeat Trips / Year", 2, 8, 4)
+        save_rate = st.slider("Assumed Satisfaction-to-Retention Rate (%)", 20, 80, 55, 5) / 100.0
         voucher_cost = st.slider("Service Recovery Cost / Flagged Flyer ($)", 10, 75, 25, 5)
 
     at_risk_cohort = 10778  # Holdout dissatisfied cohort size
@@ -96,14 +97,14 @@ with tab2:
 
     with c2:
         k1, k2, k3 = st.columns(3)
-        k1.metric("Gross Revenue Saved", f"${gross_saved_m:.2f}M")
-        k2.metric("Net Recovery Value", f"${net_val_m:.2f}M", delta=f"-${recovery_cost_m:.2f}M cost")
-        k3.metric("Year-1 Digital Capex ROI", f"{first_year_roi:.1%}")
+        k1.metric("Modeled Gross Revenue Protected", f"${gross_saved_m:.2f}M")
+        k2.metric("Modeled Net Recovery Value", f"${net_val_m:.2f}M", delta=f"-${recovery_cost_m:.2f}M cost")
+        k3.metric("Modeled Year-1 Capex ROI", f"{first_year_roi:.1%}")
 
         rng = np.random.default_rng(42)
         sim_fares = rng.normal(avg_fare, 55, 1000)
         sim_saves = rng.uniform(max(0.15, save_rate - 0.15), min(0.90, save_rate + 0.15), 1000)
         sim_net = (at_risk_cohort * sim_saves * (sim_fares * trips_yr) - at_risk_cohort * voucher_cost) / 1e6
         ci_low, ci_high = np.percentile(sim_net, [2.5, 97.5])
-        st.info(f"**1,000-Trial Monte Carlo 95% Confidence Interval:** Net Value Created ranges from **${ci_low:.2f}M to ${ci_high:.2f}M**.")
+        st.info(f"**1,000-Trial Monte Carlo 95% Confidence Interval (Scenario Simulation):** Modeled Net Value ranges from **${ci_low:.2f}M to ${ci_high:.2f}M**.")
         st.bar_chart(pd.DataFrame({"Simulated Net Value ($M)": sim_net[:100]}))
