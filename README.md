@@ -96,11 +96,3 @@ airline-passenger-satisfaction-prediction/
 ![Monte Carlo ROI Distribution](assets/monte_carlo_roi.png)
 
 ---
-
-## Feedback & Revision Log (P1 & P2 Recovery)
-
-| Checkpoint & Rubric Area | Instructor Feedback Summary | Revision Implemented | Evidence Location |
-| :--- | :--- | :--- | :--- |
-| **P1 Infographic & Package (-5.0 provisional)** | Rendered P1 infographic, P1 PDF package, and P1 evidence could not be verified as separate checkpoint artifacts. | Exported and archived the rendered P1 PDF and 1-page infographic (`MSBA265_P1_Ignacio_Flores.pdf`); documented P1 baseline benchmarks alongside final pipeline results. | `checkpoints/p1/MSBA265_P1_Ignacio_Flores.pdf`; Report Section 5 |
-| **P1 & P2 Causal & Economic Claims (-3.0 total)** | Cross-sectional satisfaction data lacks observed repeat-purchase records; claims that digital friction *drives* retention and dollar ROI exceed observational evidence. | Reframed all findings as predictive associations; added explicit comparison separating directly observed survey metrics from Monte Carlo economic assumptions; added a 6-month hub-route A/B pilot recommendation. | `README.md`; `app.py`; Report Sections 1, 2, 7, 9; Slides 1–10 |
-| **P2 Reproducible Handoff (-1.0 provisional)** | Three checklist boxes on the signed P2 validation form appeared unmarked. | Verified completion of all 3 peer replication steps, marked all checkboxes (`☑`) on the signed P2 form, and included a newly verified Final Delivery validation form. | `checkpoints/p2/P2_Assignment_Validation_Signed.pdf`; Final Canvas Validation PDF |
